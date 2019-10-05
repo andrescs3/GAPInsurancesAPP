@@ -13,7 +13,9 @@ namespace DatabaseAccess.DBContext
 
 
         public DbSet<Insurance> Insurances { get; set; }
-        
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<CustomerInsurance> CustomerInsurances { get; set; }
+
     }
 }
 

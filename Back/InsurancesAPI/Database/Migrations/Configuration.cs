@@ -1,6 +1,10 @@
 namespace DatabaseAccess.Migrations
 {
+    using DatabaseAccess.DBContext;
+    using Models.Business;
+    using Models.Enums;
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
@@ -12,12 +16,26 @@ namespace DatabaseAccess.Migrations
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(DBContext.InsurancesDBContext context)
+        protected override void Seed(InsurancesDBContext context)
         {
-            //  This method will be called after migrating to the latest version.
+            IList<Customer> Users = new List<Customer>();
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data.
+            Users.Add(new Customer() { FullName = "Ruiz Andres", Identification = "12233" });
+            Users.Add(new Customer() { FullName = "Velasco Felipe", Identification = "12234" });
+
+            context.Customers.AddRange(Users);
+
+
+            IList<Insurance> Insurances = new List<Insurance>();
+
+            Insurances.Add(new Insurance() { Name = "2Contra incendios", Type = InsuranceTypeEnum.FIRE });
+            Insurances.Add(new Insurance() { Name = "2Contra terremotos", Type = InsuranceTypeEnum.EARTHQUAKE });
+
+
+            context.Insurances.AddRange(Insurances);
+
+            
+            
         }
     }
 }

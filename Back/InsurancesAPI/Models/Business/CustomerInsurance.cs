@@ -8,7 +8,7 @@ namespace Models.Business
     public class CustomerInsurance
     {
         [Key]
-        public long UserInsuranceID { get; set; }
+        public long CustomerInsuranceID { get; set; }
         public DateTime InitDate { get; set; }
         public decimal Price { get; set; }
         public int MonthsDuration { get; set; }
