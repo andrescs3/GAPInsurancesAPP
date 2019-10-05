@@ -1,0 +1,56 @@
+<div>
+    <h1>Insurances</h1>                    
+        
+  </div>
+  <table class="table">
+    <thead>
+        <tr>                 
+          <th>
+            InsuranceID
+          </th>
+          <th>
+              Name
+          </th>
+          <th>
+            Type
+          </th>
+          <th>
+              Coverage
+          </th>   
+          <th>
+            Edit
+          </th>
+          <th>
+            Delete
+          </th>
+        </tr>
+    </thead>
+   
+    <tbody >
+    <tr *ngFor="let Insurance of Insurances"  >
+          <td>
+            {{Insurance.InsuranceID}}
+          </td>
+          <td>
+            {{Insurance.Name}}
+          </td>
+          <td>
+            {{InsuranceTypeEnum[Insurance.Type]}}
+          </td>
+          <td>
+            {{Insurance.Coverage}}
+          </td>
+               
+          <td >
+              <a href="/insuranceedit/{{Insurance.InsuranceID}}" >Edit</a>
+          </td>
+          <td >
+              <a href="/insurancedelete/{{Insurance.InsuranceID}}" >Delete</a>
+          </td>    
+    </tr>
+       
+        
+    </tbody>
+    </table> 
+  
+    <h2><a href="/insuranceedit">New Insurance</a></h2>
