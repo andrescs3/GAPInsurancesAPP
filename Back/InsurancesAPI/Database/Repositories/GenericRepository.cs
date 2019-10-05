@@ -1,4 +1,4 @@
-﻿using Database.Interface;
+﻿using DatabaseAccess.Interface;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Database.Repositories
+namespace DatabaseAccess.Repositories
 {
     public abstract class GenericRepository<C, T> :
            IGenericRepository<T> where T : class where C : DbContext, new()

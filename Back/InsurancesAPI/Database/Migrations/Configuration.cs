@@ -18,12 +18,12 @@ namespace DatabaseAccess.Migrations
 
         protected override void Seed(InsurancesDBContext context)
         {
-            IList<Customer> Users = new List<Customer>();
+            IList<Customer> Customers = new List<Customer>();
 
-            Users.Add(new Customer() { FullName = "Ruiz Andres", Identification = "12233" });
-            Users.Add(new Customer() { FullName = "Velasco Felipe", Identification = "12234" });
+            Customers.Add(new Customer() { FullName = "Ruiz Andres", Identification = "12233" });
+            Customers.Add(new Customer() { FullName = "Velasco Felipe", Identification = "12234" });
 
-            context.Customers.AddRange(Users);
+            context.Customers.AddRange(Customers);
 
 
             IList<Insurance> Insurances = new List<Insurance>();

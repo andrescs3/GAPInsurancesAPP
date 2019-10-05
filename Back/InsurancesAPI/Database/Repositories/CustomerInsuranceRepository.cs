@@ -1,4 +1,4 @@
-﻿using Database.Interface;
+﻿using DatabaseAccess.Interface;
 using DatabaseAccess.DBContext;
 using Models.Business;
 using System;
@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Database.Repositories
+namespace DatabaseAccess.Repositories
 {
-    class CustomerInsuranceRepository : GenericRepository<InsurancesDBContext, CustomerInsurance>, ICustomerInsuranceRepository
+   public class CustomerInsuranceRepository : GenericRepository<InsurancesDBContext, CustomerInsurance>, ICustomerInsuranceRepository
     {
 
         public CustomerInsurance GetById(long customerinsuranceID)

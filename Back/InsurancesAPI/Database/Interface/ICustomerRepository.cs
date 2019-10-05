@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Database.Interface
+namespace DatabaseAccess.Interface
 {
     public interface ICustomerRepository : IGenericRepository<Customer>
     {
