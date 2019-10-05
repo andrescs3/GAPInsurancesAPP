@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InsurancesAPI.Resolver;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
@@ -10,6 +11,7 @@ namespace InsurancesAPI
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
+            config.DependencyResolver = new DIResolver();
 
             // Web API routes
             config.MapHttpAttributeRoutes();

@@ -1,4 +1,5 @@
-﻿using DatabaseAccess.Repositories;
+﻿using DatabaseAccess.Interface;
+using DatabaseAccess.Repositories;
 using Models.Business;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
@@ -11,19 +12,23 @@ namespace InsuranceAPI.Controllers
     public class InsurancesController : ApiController
     {
 
-        private InsuranceRepository InsuranceRepository = new InsuranceRepository();
+        private IInsuranceRepository _InsuranceRepository;
+
+        public InsurancesController(IInsuranceRepository insuranceRepository) {
+            _InsuranceRepository = insuranceRepository;
+        }
 
         // GET: api/Insurances
         public IQueryable<Insurance> GetInsurances()
         {
-            return InsuranceRepository.GetAll();
+            return _InsuranceRepository.GetAll();
         }
 
         // GET: api/Insurances/5
         [ResponseType(typeof(Insurance))]
         public IHttpActionResult GetInsurance(long id)
         {
-            Insurance Insurance = InsuranceRepository.GetById(id);
+            Insurance Insurance = _InsuranceRepository.GetById(id);
             if (Insurance == null)
             {
                 return NotFound();
@@ -46,11 +51,11 @@ namespace InsuranceAPI.Controllers
                 return BadRequest();
             }
 
-            InsuranceRepository.Update(Insurance);
+            _InsuranceRepository.Update(Insurance);
 
             try
             {
-                InsuranceRepository.Save();
+                _InsuranceRepository.Save();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -78,8 +83,8 @@ namespace InsuranceAPI.Controllers
                     return BadRequest(ModelState);
                 }
 
-                InsuranceRepository.Insert(Insurance);
-                InsuranceRepository.Save();
+                _InsuranceRepository.Insert(Insurance);
+                _InsuranceRepository.Save();
 
                 return CreatedAtRoute("DefaultApi", new { id = Insurance.InsuranceID }, Insurance);
             }
@@ -95,14 +100,14 @@ namespace InsuranceAPI.Controllers
         [ResponseType(typeof(Insurance))]
         public IHttpActionResult DeleteInsurance(long id)
         {
-            Insurance Insurance = InsuranceRepository.GetById(id);
+            Insurance Insurance = _InsuranceRepository.GetById(id);
             if (Insurance == null)
             {
                 return NotFound();
             }
 
-            InsuranceRepository.Delete(Insurance);
-            InsuranceRepository.Save();
+            _InsuranceRepository.Delete(Insurance);
+            _InsuranceRepository.Save();
 
             return Ok(Insurance);
         }
@@ -110,7 +115,7 @@ namespace InsuranceAPI.Controllers
 
         private bool InsuranceExists(long id)
         {
-            return InsuranceRepository.FindBy(X => X.InsuranceID == id).Count() > 0;
+            return _InsuranceRepository.FindBy(X => X.InsuranceID == id).Count() > 0;
         }
     }
 }

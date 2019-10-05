@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
+using DatabaseAccess.Interface;
 using DatabaseAccess.Repositories;
 using Models.Business;
 
@@ -16,19 +17,23 @@ namespace CustomerInsuranceAPI.Controllers
     public class CustomerInsurancesController : ApiController
     {
 
-        private CustomerInsuranceRepository CustomerInsuranceRepository = new CustomerInsuranceRepository();
+
+        public CustomerInsurancesController(ICustomerInsuranceRepository customerInsuranceRepository) {
+            _CustomerInsuranceRepository = customerInsuranceRepository;
+        }
+        private ICustomerInsuranceRepository _CustomerInsuranceRepository;
 
         // GET: api/CustomerInsurances
         public IQueryable<CustomerInsurance> GetCustomerInsurances()
         {
-            return CustomerInsuranceRepository.GetAll();
+            return _CustomerInsuranceRepository.GetAll();
         }
 
         // GET: api/CustomerInsurances/5
         [ResponseType(typeof(CustomerInsurance))]
         public IHttpActionResult GetCustomerInsurance(long id)
         {
-            CustomerInsurance CustomerInsurance = CustomerInsuranceRepository.GetById(id);
+            CustomerInsurance CustomerInsurance = _CustomerInsuranceRepository.GetById(id);
             if (CustomerInsurance == null)
             {
                 return NotFound();
@@ -51,11 +56,11 @@ namespace CustomerInsuranceAPI.Controllers
                 return BadRequest();
             }
 
-            CustomerInsuranceRepository.Update(CustomerInsurance);
+            _CustomerInsuranceRepository.Update(CustomerInsurance);
 
             try
             {
-                CustomerInsuranceRepository.Save();
+                _CustomerInsuranceRepository.Save();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -83,8 +88,8 @@ namespace CustomerInsuranceAPI.Controllers
                     return BadRequest(ModelState);
                 }
 
-                CustomerInsuranceRepository.Insert(CustomerInsurance);
-                CustomerInsuranceRepository.Save();
+                _CustomerInsuranceRepository.Insert(CustomerInsurance);
+                _CustomerInsuranceRepository.Save();
 
                 return CreatedAtRoute("DefaultApi", new { id = CustomerInsurance.CustomerInsuranceID }, CustomerInsurance);
             }
@@ -100,14 +105,14 @@ namespace CustomerInsuranceAPI.Controllers
         [ResponseType(typeof(CustomerInsurance))]
         public IHttpActionResult DeleteCustomerInsurance(long id)
         {
-            CustomerInsurance CustomerInsurance = CustomerInsuranceRepository.GetById(id);
+            CustomerInsurance CustomerInsurance = _CustomerInsuranceRepository.GetById(id);
             if (CustomerInsurance == null)
             {
                 return NotFound();
             }
 
-            CustomerInsuranceRepository.Delete(CustomerInsurance);
-            CustomerInsuranceRepository.Save();
+            _CustomerInsuranceRepository.Delete(CustomerInsurance);
+            _CustomerInsuranceRepository.Save();
 
             return Ok(CustomerInsurance);
         }
@@ -115,7 +120,7 @@ namespace CustomerInsuranceAPI.Controllers
 
         private bool CustomerInsuranceExists(long id)
         {
-            return CustomerInsuranceRepository.FindBy(X => X.CustomerInsuranceID == id).Count() > 0;
+            return _CustomerInsuranceRepository.FindBy(X => X.CustomerInsuranceID == id).Count() > 0;
         }
     }
 }

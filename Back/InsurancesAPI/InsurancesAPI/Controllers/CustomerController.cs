@@ -1,5 +1,6 @@
 ﻿
 using DatabaseAccess.Repositories;
+using DatabaseAccess.Interface;
 using Models.Business;
 using System;
 using System.Collections.Generic;
@@ -17,20 +18,25 @@ namespace InsuranceAPI.Controllers
 {
     public class CustomersController : ApiController
     {
+        private ICustomerRepository _CustomerRepository;
 
-        private DatabaseAccess.Repositories.CustomerRepository CustomerRepository = new CustomerRepository();        
+        public CustomersController(ICustomerRepository customerRepository) {
+            _CustomerRepository = customerRepository;
+        } 
+
+        
 
         // GET: api/Customers
         public IQueryable<Customer> GetCustomers()
         {
-            return CustomerRepository.GetAll();
+            return _CustomerRepository.GetAll();
         }
 
         // GET: api/Customers/5
         [ResponseType(typeof(Customer))]
         public IHttpActionResult GetCustomer(long id)
         {
-            Customer Customer = CustomerRepository.GetById(id);
+            Customer Customer = _CustomerRepository.GetById(id);
             if (Customer == null)
             {
                 return NotFound();
@@ -53,11 +59,11 @@ namespace InsuranceAPI.Controllers
                 return BadRequest();
             }
 
-            CustomerRepository.Update(Customer);
+            _CustomerRepository.Update(Customer);
 
             try
             {
-                CustomerRepository.Save();
+                _CustomerRepository.Save();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -85,8 +91,8 @@ namespace InsuranceAPI.Controllers
                     return BadRequest(ModelState);
                 }
 
-                CustomerRepository.Insert(Customer);
-                CustomerRepository.Save();
+                _CustomerRepository.Insert(Customer);
+                _CustomerRepository.Save();
 
                 return CreatedAtRoute("DefaultApi", new { id = Customer.CustomerID }, Customer);
             }
@@ -101,14 +107,14 @@ namespace InsuranceAPI.Controllers
         [ResponseType(typeof(Customer))]
         public IHttpActionResult DeleteCustomer(long id)
         {
-            Customer Customer = CustomerRepository.GetById(id);
+            Customer Customer = _CustomerRepository.GetById(id);
             if (Customer == null)
             {
                 return NotFound();
             }
 
-            CustomerRepository.Delete(Customer);
-            CustomerRepository.Save();
+            _CustomerRepository.Delete(Customer);
+            _CustomerRepository.Save();
 
             return Ok(Customer);
         }
@@ -116,7 +122,7 @@ namespace InsuranceAPI.Controllers
 
         private bool CustomerExists(long id)
         {
-            return CustomerRepository.FindBy(X => X.CustomerID == id).Count() > 0;
+            return _CustomerRepository.FindBy(X => X.CustomerID == id).Count() > 0;
         }
     }
 }
