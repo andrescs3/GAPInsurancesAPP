@@ -19,5 +19,14 @@ namespace Models.Business
         [ForeignKey("Insurance")]
         public long InsuranceCode { get; set; }
         public Insurance Insurance { get; set; }
+
+        public bool ValidateCustomerInsurance() {
+            if (Insurance != null)
+            {
+                return !((RiskType == RiskTypeEnum.HIGH || RiskType == RiskTypeEnum.MEDIUM_HIGH) && Insurance.Coverage > 50 );
+            }
+            return false;
+        }
+        
     }
 }

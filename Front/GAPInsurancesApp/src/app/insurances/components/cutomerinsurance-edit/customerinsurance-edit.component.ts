@@ -10,6 +10,7 @@ import { InsuranceService } from 'src/app/services/insurance-service';
 import { InsuranceModel } from 'src/app/models/insurance-model';
 import { CustomerModel } from 'src/app/models/customer-model';
 import { RiskTypeEnum } from 'src/app/framework/enum/insurance-enum';
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 @Component({
@@ -22,6 +23,8 @@ export class CustomerInsuranceEditComponent implements OnInit {
   CustomerInsurance: CustomerInsuranceModel;
   Customers: CustomerModel[] = [];
   Insurances: InsuranceModel[] = [];
+
+  InvalidEntity = false;
 
   CustomerInsuranceID: number;
   RiskTypeEnum = RiskTypeEnum;
@@ -93,6 +96,11 @@ export class CustomerInsuranceEditComponent implements OnInit {
     if ( this.CustomerInsuranceID > 0) {
       this.apiCustomerInsurance.updateCustomerInsurance(this.CustomerInsuranceID, this.CustomerInsurance).subscribe(data => {
         this.redirect();
+      }, error => {
+        if (error === 422) {
+          console.log('Cannot save');
+          this.InvalidEntity = true;
+        }
       });
 
     } else {

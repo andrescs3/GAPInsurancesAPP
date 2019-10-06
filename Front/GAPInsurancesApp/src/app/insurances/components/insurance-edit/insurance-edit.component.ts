@@ -75,7 +75,6 @@ export class InsuranceEditComponent implements OnInit {
       this.api.createInsurance(this.Insurance).subscribe(data => {
         this.redirect();
       });
-
     }
   }
 

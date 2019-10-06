@@ -21,5 +21,7 @@ namespace InsurancesAPI.Controllers
         {
             return _CustomerInsuranceRepository.GetByCustomerId(customerid);
         }
+
+        
     }
 }

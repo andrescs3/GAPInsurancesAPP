@@ -18,10 +18,12 @@ namespace CustomerInsuranceAPI.Controllers
     {
 
 
-        public CustomerInsurancesController(ICustomerInsuranceRepository customerInsuranceRepository) {
+        public CustomerInsurancesController(ICustomerInsuranceRepository customerInsuranceRepository, IInsuranceRepository InsuranceRepository) {
             _CustomerInsuranceRepository = customerInsuranceRepository;
+            _InsuranceRepository = InsuranceRepository;
         }
         private ICustomerInsuranceRepository _CustomerInsuranceRepository;
+        private IInsuranceRepository _InsuranceRepository;
 
         // GET: api/CustomerInsurances
         public IQueryable<CustomerInsurance> GetCustomerInsurances()
@@ -56,8 +58,22 @@ namespace CustomerInsuranceAPI.Controllers
                 return BadRequest();
             }
 
-            _CustomerInsuranceRepository.Update(CustomerInsurance);
+            Insurance insurance = _InsuranceRepository.GetById(CustomerInsurance.InsuranceCode);
+            if (insurance == null) {
+                return BadRequest();
+            }
+            CustomerInsurance.Insurance = insurance;
+            if (!CustomerInsurance.ValidateCustomerInsurance()) {
+                return new System.Web.Http.Results.ResponseMessageResult(
+               Request.CreateErrorResponse(
+                   (HttpStatusCode)422,
+                   new HttpError("Invalid registry, insurances with high risk cannot have 50% or higher of coverage")
+               )
+           );
+            }
 
+            _CustomerInsuranceRepository.Update(CustomerInsurance);
+                
             try
             {
                 _CustomerInsuranceRepository.Save();
