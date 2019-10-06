@@ -15,6 +15,7 @@ export class CustomerModel {
         this.Address = '';
         this.Phone = '';
         this.Identification = '';
+        this.CustomerInsurances = [];
     }
 
     public constructor(init?: Partial<CustomerModel>) {

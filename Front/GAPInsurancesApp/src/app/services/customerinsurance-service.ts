@@ -28,6 +28,10 @@ export class CustomerInsuranceService {
     return this.http.get<CustomerInsuranceModel[]>(`${this.apiUrl}CustomerInsurances`);
   }
 
+  public getByCustomerID(customerid: number): Observable<CustomerInsuranceModel[]> {
+    return this.http.get<CustomerInsuranceModel[]>(`${this.apiUrl}InsurancesByCustomer/?customerid=` + customerid);
+  }
+
   getCustomerInsurance(id: number): Observable<CustomerInsuranceModel> {
     return this.http.get<CustomerInsuranceModel>(`${this.apiUrl}CustomerInsurances/` + id)
     .pipe(

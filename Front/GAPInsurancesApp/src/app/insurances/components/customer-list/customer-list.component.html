@@ -33,7 +33,7 @@
   </div>
  
   
-  <div  *ngFor="let Customer of Customers"  >
+  <div  *ngFor="let Customer of Customers" class="row-customer" >
         <div class="row"  >
               <div class="col-md-2">
                 {{Customer.CustomerID}}
@@ -61,34 +61,34 @@
               </div>    
         </div>
 
-        <div>
-            <hr />
+        <div class="asociated-insurances">            
+            <h5>Associated Insurances</h5>
             <div>
                   <div class="row">
                           <div class="col-md-2">
                             
                           </div> 
                             <div class="col-md-2">
-                              <h5> Insurance Name</h5>
+                              <h6> Insurance Name</h6>
                               </div>  
                             <div class="col-md-1">
-                              <h5>Init Date</h5>
+                              <h6>Init Date</h6>
                             </div>
                             <div class="col-md-1">
-                              <h5> Price</h5>
+                              <h6> Price</h6>
                             </div>
                             <div class="col-md-2">
-                              <h5> Duration (Months) </h5>
+                              <h6> Duration (Months) </h6>
                             </div>
                             <div class="col-md-2">
-                              <h5> RiskType</h5>
+                              <h6> RiskType</h6>
                             </div>
                         
                             <div class="col-md-1">
-                            <h5> Edit</h5>
+                            <h6> Edit</h6>
                             </div>
                             <div class="col-md-1">
-                              <h5> Quit Insurance</h5>
+                              <h6> Delete </h6>
                             </div>
                   </div>
             </div> 
@@ -113,18 +113,16 @@
                             <div class="col-md-2">
                               {{Insurance.RiskType}}
                             </div>
-                        
-                            <div class="col-md-1">
-                            <h5> Edit</h5>
+                          <div class="col-md-1">
+                                <a href="/customerinsuranceedit/{{Insurance.CustomerInsuranceID}}" >Edit</a>
                             </div>
                             <div class="col-md-1">
-                            <h5> Quit Insurance</h5>
-                            </div>
+                                <a href="/customerinsurancedelete/{{Insurance.CustomerInsuranceID}}" >Delete</a>
+                            </div> 
                   </div>
             </div>
 
         </div>
-
   </div>
   
      

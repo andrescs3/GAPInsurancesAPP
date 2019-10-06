@@ -11,6 +11,11 @@ namespace DatabaseAccess.Repositories
 {
    public class CustomerInsuranceRepository : GenericRepository<InsurancesDBContext, CustomerInsurance>, ICustomerInsuranceRepository
     {
+        public IQueryable<CustomerInsurance> GetByCustomerId(long customerid)
+        {
+            var query = GetAll().Where(x => x.CustomerCode == customerid);
+            return query;
+        }
 
         public CustomerInsurance GetById(long customerinsuranceID)
         {

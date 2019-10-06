@@ -10,5 +10,7 @@ namespace DatabaseAccess.Interface
     public interface ICustomerInsuranceRepository:IGenericRepository<CustomerInsurance>
     {
         CustomerInsurance GetById(long customerinsuranceid);
+
+        IQueryable<CustomerInsurance> GetByCustomerId(long customerid);
     }
 }

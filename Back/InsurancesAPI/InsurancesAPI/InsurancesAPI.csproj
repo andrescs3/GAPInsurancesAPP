@@ -117,6 +117,7 @@
   <ItemGroup>
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\InsurancesByCustomerController.cs" />
     <Compile Include="Controllers\InsurancesController.cs" />
     <Compile Include="Controllers\CustomerInsurancesController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
