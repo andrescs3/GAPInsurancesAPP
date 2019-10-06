@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { InsuranceModel } from 'src/app/models/insurance';
+import { InsuranceModel } from 'src/app/models/insurance-model';
 import { Http } from '@angular/http';
 import { InsuranceTypeEnum } from 'src/app/framework/enum/insurance-enum';
 import { InsuranceService } from 'src/app/services/insurance-service';

@@ -1,6 +1,6 @@
 import { RiskTypeEnum } from '../framework/enum/insurance-enum';
-import { InsuranceModel } from './insurance';
-import { CustomerModel } from './customer';
+import { InsuranceModel } from './insurance-model';
+import { CustomerModel } from './customer-model';
 
 export class CustomerInsuranceModel {
     CustomerInsuranceID: number;

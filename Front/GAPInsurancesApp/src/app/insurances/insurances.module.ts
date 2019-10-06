@@ -6,6 +6,8 @@ import { InsuranceListComponent } from './components/insurance-list/insurance-li
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Routes, RouterModule, Router, ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { InsuranceEditComponent } from './components/insurance-edit/insurance-edit.component';
+import { InsuranceDeleteComponent } from './components/insurance-delete/insurance-delete.component';
 
 
 
@@ -13,6 +15,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
   declarations:
   [
     InsuranceListComponent,
+    InsuranceEditComponent,
+    InsuranceDeleteComponent
 
   ],
   imports: [
