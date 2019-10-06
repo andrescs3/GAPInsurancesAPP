@@ -28,8 +28,8 @@ namespace DatabaseAccess.Migrations
 
             IList<Insurance> Insurances = new List<Insurance>();
 
-            Insurances.Add(new Insurance() { Name = "2Contra incendios", Type = InsuranceTypeEnum.FIRE });
-            Insurances.Add(new Insurance() { Name = "2Contra terremotos", Type = InsuranceTypeEnum.EARTHQUAKE });
+            Insurances.Add(new Insurance() { Name = "Contra incendios", Type = InsuranceTypeEnum.FIRE, Coverage = 30 });
+            Insurances.Add(new Insurance() { Name = "Contra terremotos", Type = InsuranceTypeEnum.EARTHQUAKE, Coverage = 60 });
 
 
             context.Insurances.AddRange(Insurances);

@@ -106,6 +106,11 @@ export class CustomerInsuranceEditComponent implements OnInit {
     } else {
       this.apiCustomerInsurance.createCustomerInsurance(this.CustomerInsurance).subscribe(data => {
         this.redirect();
+      }, error => {
+        if (error === 422) {
+          console.log('Cannot save');
+          this.InvalidEntity = true;
+        }
       });
 
     }
