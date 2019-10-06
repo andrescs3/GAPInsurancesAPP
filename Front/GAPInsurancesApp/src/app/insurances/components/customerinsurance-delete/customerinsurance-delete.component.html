@@ -1,0 +1,32 @@
+        
+        <!-- Modal -->
+        <div >
+            <div >
+                <div >
+                    <div >
+                        <button type="button" class="close" >
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 >Delete Customer Insurance</h4>
+                    </div>
+                    <div>
+                        <p>Are you sure to delete this Customer Insurance?</p>
+                    </div>
+                    <div>
+                        <h5>CustomerInsuranceID</h5>
+                           <p> {{CustomerInsurance.CustomerInsuranceID}}</p>
+                          
+                          <h5>Customer Code</h5>
+                           <p> {{CustomerInsurance.CustomerCode}}</p>
+                          
+                           <h5>Insurance Code</h5>
+                           <p> {{CustomerInsurance.InsuranceCode}}</p>
+                               
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" (click)="onClose">Close</button>
+                        <button type="button" class="btn btn-primary" (click)="onDelete()">Confirm</button>
+                    </div>
+                </div>
+            </div>
+        </div>

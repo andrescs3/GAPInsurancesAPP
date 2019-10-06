@@ -1,5 +1,5 @@
 import { Injector, OnInit } from '@angular/core';
-import { InsuranceModel } from '../models/insurance-model';
+import { CustomerModel } from '../models/Customer-model';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError  } from 'rxjs';
@@ -8,7 +8,7 @@ import { retry, catchError } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class InsuranceService {
+export class CustomerService {
 
   private apiUrl = 'http://localhost:60681/api/';
 
@@ -24,12 +24,12 @@ export class InsuranceService {
   };
 
 
-  public getAll(): Observable<InsuranceModel[]> {
-    return this.http.get<InsuranceModel[]>(`${this.apiUrl}Insurances`);
+  public getAll(): Observable<CustomerModel[]> {
+    return this.http.get<CustomerModel[]>(`${this.apiUrl}Customers`);
   }
 
-  getInsurance(id: number): Observable<InsuranceModel> {
-    return this.http.get<InsuranceModel>(`${this.apiUrl}Insurances/` + id)
+  getCustomer(id: number): Observable<CustomerModel> {
+    return this.http.get<CustomerModel>(`${this.apiUrl}Customers/` + id)
     .pipe(
       retry(1),
       catchError(this.handleError)
@@ -37,16 +37,16 @@ export class InsuranceService {
   }
 
 
-  createInsurance(insurance: InsuranceModel): Observable<InsuranceModel> {
-    return this.http.post<InsuranceModel>(`${this.apiUrl}Insurances` , JSON.stringify(insurance), this.httpOptions)
+  createCustomer(Customer: CustomerModel): Observable<CustomerModel> {
+    return this.http.post<CustomerModel>(`${this.apiUrl}Customers` , JSON.stringify(Customer), this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.handleError)
     );
   }
 
-  updateInsurance(id: number, insurance: InsuranceModel): Observable<InsuranceModel> {
-    return this.http.put<InsuranceModel>(`${this.apiUrl}Insurances/` + id, JSON.stringify(insurance), this.httpOptions)
+  updateCustomer(id: number, Customer: CustomerModel): Observable<CustomerModel> {
+    return this.http.put<CustomerModel>(`${this.apiUrl}Customers/` + id, JSON.stringify(Customer), this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.handleError)
@@ -54,8 +54,8 @@ export class InsuranceService {
   }
 
 
-  deleteInsurance(id: number) {
-    return this.http.delete<InsuranceModel>(`${this.apiUrl}Insurances/` + id, this.httpOptions)
+  deleteCustomer(id: number) {
+    return this.http.delete<CustomerModel>(`${this.apiUrl}Customers/` + id, this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.handleError)

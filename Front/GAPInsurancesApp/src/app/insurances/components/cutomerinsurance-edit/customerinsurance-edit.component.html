@@ -1,0 +1,98 @@
+
+        
+        <div  [formGroup]="frmCustomerInsurance" >
+                <div >
+                    <div >
+                        <div >
+                            <h4 [hidden]="CustomerInsuranceID<=0">Edit Customer Insurance</h4>
+                            <h4 [hidden]="CustomerInsuranceID>0">Add Customer Insurance</h4>
+                        </div>
+                        <div>
+                            
+
+                                   
+     
+                                <div class="form-group row" [hidden]="CustomerInsuranceID<=0">
+                                    <label class="col-sm-2 col-form-label">Id</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" 
+                                        disabled formControlName="CustomerInsuranceID" name="ID"/>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Customer</label>
+                                        <div class="col-sm-10">
+        
+                                            <select name="Type"formControlName="CustomerCode">
+                                                <option class="form-control"  *ngFor="let Customer of Customers" [value]="Customer.CustomerID" [label]="Customer.FullName" ></option>
+                                              </select>
+                                        </div>
+                                </div>
+
+                                <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Insurance</label>
+                                        <div class="col-sm-10">
+        
+                                            <select name="Type" formControlName="InsuranceCode">
+                                                <option class="form-control"  *ngFor="let insurance of Insurances" [value]="insurance.InsuranceID" [label]="insurance.Name" ></option>
+                                              </select>
+                                        </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Price</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" 
+                                        formControlName="Price" name="Price"  id="Price"/>
+                                    </div>
+                                    <div class="col-sm-12 label-error" *ngIf="Price.errors">
+                                    <div class="col-form-label alert alert-danger" *ngIf="Price.errors" >
+                                        <div *ngIf="Price.invalid && (Price.dirty || Price.touched)">
+                                          <div class="label-error" *ngIf="Price.errors.required">
+                                             This cannot be empty!
+                                          </div>
+                                        </div>                        
+                                    </div>
+                                  </div>
+                                </div>
+    
+                                
+                                
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Months Duration</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" 
+                                       formControlName="MonthsDuration" name="MonthsDuration"/>
+                                    </div>
+                                </div>
+    
+
+                                <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">Risk Type</label>
+                                        <div class="col-sm-10">
+        
+                                            <select name="Type" formControlName="RiskType">
+                                                <option class="form-control"  *ngFor="let key of keys" [value]="key" [label]="RiskTypeEnum[key]" ></option>
+                                              </select>
+                                        </div>
+                                    </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">Init  Date</label>
+                                    <div class="col-sm-10">
+                                        <input matInput [matDatepicker]="picker" placeholder="InitDate"formControlName="InitDate" name="InitDate" class="form-control">
+                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker></mat-datepicker>
+                                    </div>
+                                </div>
+    
+                                
+                        </div>
+                        <div >
+                            <button type="button" class="btn btn-secondary" (click)="onClose()">Close</button>
+                            <button type="button" class="btn btn-primary" (click)="onSave()"  [disabled]="frmCustomerInsurance.errors || frmCustomerInsurance.controls.Price.errors">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>

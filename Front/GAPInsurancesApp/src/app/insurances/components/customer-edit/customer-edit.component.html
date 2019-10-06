@@ -1,0 +1,79 @@
+
+        
+        <div  [formGroup]="frmCustomer" >
+            <div >
+                <div >
+                    <div >
+                        <h4 [hidden]="CustomerID<=0">Edit Customer</h4>
+                        <h4 [hidden]="CustomerID>0">Add Customer</h4>
+                    </div>
+                    <div>
+                        
+ 
+                            <div class="form-group row" [hidden]="CustomerID<=0">
+                                <label class="col-sm-2 col-form-label">Id</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" 
+                                    disabled formControlName="CustomerID" name="ID"/>
+                                </div>
+                            </div>
+ 
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Full Name</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" 
+                                   formControlName="FullName" name="FullName" id="FullName"/>
+                                </div>
+                                <div class="col-sm-12" *ngIf="FullName.errors">
+                                <div class="col-form-label" *ngIf="FullName.errors" >
+                                    <div *ngIf="FullName.invalid && (FullName.dirty || FullName.touched)"  class="col-form-label alert alert-danger">
+                                      <div class="label-error" *ngIf="FullName.errors.required">
+                                         This cannot be empty!
+                                      </div>
+                                    </div>                        
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Identification</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" 
+                                    formControlName="Identification" name="Identification" id="Identification"/>
+                                </div>
+                                <div class="col-sm-12" *ngIf="Identification.errors">
+                                <div class="col-sm-12 col-form-label" *ngIf="Identification.errors" >
+                                    <div *ngIf="Identification.invalid && (Identification.dirty || Identification.touched)"  class="col-form-label alert alert-danger">
+                                      <div class="label-error" *ngIf="Identification.errors.required">
+                                         This cannot be empty!
+                                      </div>
+                                    </div>                        
+                                </div>
+                              </div>
+                            </div>
+                            
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Address</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" 
+                                    formControlName="Address" name="Address"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Phone</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" 
+                                    formControlName="Phone" name="Phone"/>
+                                </div>
+                            </div>
+
+                        
+                    </div>
+                    <div class="modal-footer" >
+                        <button type="button" class="btn btn-secondary" (click)="onClose()">Close</button>
+                        <button type="button" class="btn btn-primary" (click)="onSave()"  [disabled]="frmCustomer.errors || frmCustomer.controls.FullName.errors || frmCustomer.controls.Identification.errors">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>

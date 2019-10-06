@@ -23,5 +23,9 @@ export class CustomerInsuranceModel {
         this.MonthsDuration = -1;
         this.RiskType = RiskTypeEnum.None;
     }
+
+    public constructor(init?: Partial<CustomerInsuranceModel>) {
+        Object.assign(this, init);
+    }
 }
 

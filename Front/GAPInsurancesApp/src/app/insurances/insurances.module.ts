@@ -8,15 +8,28 @@ import { Routes, RouterModule, Router, ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { InsuranceEditComponent } from './components/insurance-edit/insurance-edit.component';
 import { InsuranceDeleteComponent } from './components/insurance-delete/insurance-delete.component';
+import { CustomerInsuranceEditComponent } from './components/cutomerinsurance-edit/customerinsurance-edit.component';
+import { CustomerListComponent } from './components/customer-list/customer-list.component';
+import { CustomerInsuranceDeleteComponent } from './components/customerinsurance-delete/customerinsurance-delete.component';
+import { CustomerEditComponent } from './components/customer-edit/customer-edit.component';
+import { CustomerDeleteComponent } from './components/customer-delete/customer-delete.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatDatepickerModule, MatNativeDateModule} from '@angular/material';
+import { BrowserModule } from '@angular/platform-browser';
 
 
 
 @NgModule({
   declarations:
   [
-    InsuranceListComponent,
     InsuranceEditComponent,
-    InsuranceDeleteComponent
+    InsuranceListComponent,
+    InsuranceDeleteComponent,
+    CustomerListComponent,
+    CustomerEditComponent,
+    CustomerInsuranceEditComponent,
+    CustomerDeleteComponent,
+    CustomerInsuranceDeleteComponent,
 
   ],
   imports: [
@@ -25,6 +38,7 @@ import { InsuranceDeleteComponent } from './components/insurance-delete/insuranc
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule,
+    MatDatepickerModule
   ]
 })
 export class InsurancesModule { }

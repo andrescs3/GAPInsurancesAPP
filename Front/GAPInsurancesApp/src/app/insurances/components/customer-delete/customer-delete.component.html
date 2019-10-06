@@ -1,0 +1,38 @@
+        
+        <!-- Modal -->
+        <div >
+            <div >
+                <div >
+                    <div >
+                        <button type="button" class="close" >
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 >Delete Customer</h4>
+                    </div>
+                    <div>
+                        <p>Are you sure to delete this Customer?</p>
+                    </div>
+                    <div>
+                        <h5>CustomerID</h5>
+                           <p> {{Customer.CustomerID}}</p>
+                          
+                          <h5>FullName</h5>
+                           <p> {{Customer.FullName}}</p>
+                          
+                          <h5>Address</h5>
+                           <p> {{Customer.Address}}</p>
+                          
+                          <h5>Phone</h5>
+                           <p> {{Customer.Phone}}</p>
+                          
+                          <h5>Identification</h5>
+                           <p> {{Customer.Identification}}</p>                        
+                               
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" (click)="onClose()">Close</button>
+                        <button type="button" class="btn btn-primary" (click)="onDelete()">Confirm</button>
+                    </div>
+                </div>
+            </div>
+        </div>

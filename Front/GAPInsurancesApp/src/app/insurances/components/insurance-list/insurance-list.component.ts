@@ -17,9 +17,6 @@ export class InsuranceListComponent implements OnInit {
 
 
   InsuranceTypeEnum = InsuranceTypeEnum;
-
-  @Input() public Insurance: InsuranceModel;
-
   ngOnInit(): void {
      this.api.getAll().subscribe((data: {}) => {
       this.Insurances = data;
