@@ -1,6 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LayoutPageComponent } from './layout-page.component';
+import { HeaderComponent } from '../components/header/header.component';
+import { LayoutRoutingModule } from '../layout-routing.module';
+import { InsurancesModule } from 'src/app/insurances/insurances.module';
+import { RouterModule } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('LayoutPageComponent', () => {
   let component: LayoutPageComponent;
@@ -8,7 +13,13 @@ describe('LayoutPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LayoutPageComponent ]
+      declarations: [ LayoutPageComponent,HeaderComponent ],
+      imports: [
+        LayoutRoutingModule,
+        InsurancesModule,
+        RouterModule,
+        RouterTestingModule
+      ]
     })
     .compileComponents();
   }));
