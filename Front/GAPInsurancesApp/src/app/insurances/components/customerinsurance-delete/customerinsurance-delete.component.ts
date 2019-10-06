@@ -26,7 +26,7 @@ export class CustomerInsuranceDeleteComponent implements OnInit {
   }
 
   onClose() {
-    this.router.navigate(['/CustomerInsurancelist']);
+    this.router.navigate(['/customerlist']);
   }
 
   onDelete() {
