@@ -1,7 +1,10 @@
-<div>
+<div class="form-header">
   <h1>Customers</h1>                    
       
+      <h5><a href="/customeredit">Add New Customer</a></h5>
+      <h5><a href="/customerinsuranceedit">Add New Insurance To Customer</a></h5>
 </div>
+
 <div class="table">
   <div class="row table-header">
                  
@@ -11,10 +14,10 @@
         <div class="col-md-2">
         <h4>FullName</h4>
         </div>
-        <div class="col-md-1">
+        <div class="col-md-2">
         <h4>Address</h4>
         </div>
-        <div class="col-md-1">
+        <div class="col-md-2">
         <h4>Phone</h4>
         </div>
         <div class="col-md-2">
@@ -25,9 +28,6 @@
         </div>
         <div class="col-md-1">
         <h4>Delete</h4>
-        </div>
-        <div class="col-md-1">
-        <h4>Add Insurance</h4>
         </div>
       
   </div>
@@ -41,10 +41,10 @@
               <div class="col-md-2">
                 {{Customer.FullName}}
               </div>
-              <div class="col-md-1">
+              <div class="col-md-2">
                 {{Customer.Address}}
               </div>
-              <div class="col-md-1">
+              <div class="col-md-2">
                 {{Customer.Phone}}
               </div>
               <div class="col-md-2">
@@ -55,10 +55,7 @@
               </div>
               <div class="col-md-1">
                   <a href="/customerdelete/{{Customer.CustomerID}}" >Delete</a>
-              </div>    
-              <div class="col-md-1">
-                  <a href="/customerdelete/{{Customer.CustomerID}}" >Add</a>
-              </div>    
+              </div>     
         </div>
 
         <div class="asociated-insurances">            
@@ -102,7 +99,7 @@
                               {{Insurance.InsuranceCode}}
                               </div>  
                             <div class="col-md-1">
-                              {{Insurance.InitDate}}
+                              {{Insurance.InitDate | date}}
                             </div>
                             <div class="col-md-1">
                               {{Insurance.Price}}
@@ -111,7 +108,7 @@
                               {{Insurance.MonthsDuration}}
                             </div>
                             <div class="col-md-2">
-                              {{Insurance.RiskType}}
+                              {{RiskTypeEnum[Insurance.RiskType]}}
                             </div>
                           <div class="col-md-1">
                                 <a href="/customerinsuranceedit/{{Insurance.CustomerInsuranceID}}" >Edit</a>
@@ -130,4 +127,4 @@
 </div>
   
 
-  <h2><a href="/customeredit">New Customer</a></h2>
+  

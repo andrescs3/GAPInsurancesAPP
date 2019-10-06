@@ -42,7 +42,7 @@ export class CustomerInsuranceService {
 
 
   createCustomerInsurance(CustomerInsurance: CustomerInsuranceModel): Observable<CustomerInsuranceModel> {
-    return this.http.post<CustomerInsuranceModel>(`${this.apiUrl}CustomerInsurances` , JSON.stringify(CustomerInsurance), this.httpOptions)
+    return this.http.post<CustomerInsuranceModel>(`${this.apiUrl}CustomerInsurances/` , JSON.stringify(CustomerInsurance), this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.handleError)
@@ -50,7 +50,8 @@ export class CustomerInsuranceService {
   }
 
   updateCustomerInsurance(id: number, CustomerInsurance: CustomerInsuranceModel): Observable<CustomerInsuranceModel> {
-    return this.http.post<CustomerInsuranceModel>(`${this.apiUrl}CustomerInsurances/`, JSON.stringify(CustomerInsurance), this.httpOptions)
+    return this.http.put<CustomerInsuranceModel>(`${this.apiUrl}CustomerInsurances/` + id ,
+    JSON.stringify(CustomerInsurance), this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.handleError)

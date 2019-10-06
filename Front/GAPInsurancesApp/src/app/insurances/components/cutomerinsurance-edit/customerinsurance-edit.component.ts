@@ -7,7 +7,9 @@ import { routerNgProbeToken } from '@angular/router/src/router_module';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { CustomerService } from 'src/app/services/Customer-service';
 import { InsuranceService } from 'src/app/services/insurance-service';
-
+import { InsuranceModel } from 'src/app/models/insurance-model';
+import { CustomerModel } from 'src/app/models/customer-model';
+import { RiskTypeEnum } from 'src/app/framework/enum/insurance-enum';
 
 
 @Component({
@@ -18,17 +20,18 @@ import { InsuranceService } from 'src/app/services/insurance-service';
 export class CustomerInsuranceEditComponent implements OnInit {
 
   CustomerInsurance: CustomerInsuranceModel;
-
+  Customers: CustomerModel[] = [];
+  Insurances: InsuranceModel[] = [];
 
   CustomerInsuranceID: number;
+  RiskTypeEnum = RiskTypeEnum;
+  keys: any;
 
-  public frmCustomerInsurance: FormGroup;
-
-
+  frmCustomerInsurance: FormGroup;
   public GetFormDefinition() {
 
     return this.fb.group({
-      CustomerInsuranceID: [''],
+      CustomerInsuranceID: [-1],
       CustomerCode: ['', Validators.required],
       InsuranceCode: ['', Validators.required],
       InitDate: ['', Validators.required],
@@ -45,11 +48,21 @@ export class CustomerInsuranceEditComponent implements OnInit {
     this.CustomerInsurance = new CustomerInsuranceModel();
     this.frmCustomerInsurance = this.GetFormDefinition();
     this.CustomerInsuranceID = +this.route.snapshot.paramMap.get('id');
+    this.keys = Object.keys(this.RiskTypeEnum).filter(Number);
 
   }
   get Price() { return this.frmCustomerInsurance.get('Price'); }
 
   ngOnInit() {
+    this.apiCustomer.getAll().subscribe(data => {
+      this.Customers = data;
+    });
+
+
+    this.apiInsurances.getAll().subscribe(data => {
+      this.Insurances = data;
+    });
+
     if (this.CustomerInsuranceID > 0) {
       this.apiCustomerInsurance.getCustomerInsurance(this.CustomerInsuranceID).subscribe((data: CustomerInsuranceModel) => {
         this.CustomerInsurance = data;
@@ -63,11 +76,16 @@ export class CustomerInsuranceEditComponent implements OnInit {
           RiskType : data.RiskType
         });
       });
+
+
+
     }
+
+
   }
 
   redirect() {
-    this.router.navigate(['/CustomerInsurancelist']);
+    this.router.navigate(['/customerlist']);
   }
 
   onSave() {

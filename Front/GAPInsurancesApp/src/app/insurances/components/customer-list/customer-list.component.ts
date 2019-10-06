@@ -4,6 +4,7 @@ import { Http } from '@angular/http';
 
 import { CustomerService } from 'src/app/services/Customer-service';
 import { CustomerInsuranceService } from 'src/app/services/CustomerInsurance-service';
+import { RiskTypeEnum } from 'src/app/framework/enum/insurance-enum';
 
 
 
@@ -15,6 +16,7 @@ import { CustomerInsuranceService } from 'src/app/services/CustomerInsurance-ser
 export class CustomerListComponent implements OnInit {
 
   Customers: any = [];
+  RiskTypeEnum = RiskTypeEnum;
   ngOnInit(): void {
      this.apiCustomer.getAll().subscribe((data: {}) => {
       this.Customers = data;
