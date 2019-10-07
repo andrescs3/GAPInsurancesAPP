@@ -78,5 +78,9 @@ export class InsuranceEditComponent implements OnInit {
     }
   }
 
+  onClose(){
+    this.router.navigate(['/insurancelist']);
+  }
+
 
 }

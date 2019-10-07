@@ -82,5 +82,9 @@ export class CustomerEditComponent implements OnInit {
     }
   }
 
+  onClose(){
+    this.router.navigate(['/customerlist']);
+  }
+
 
 }

@@ -45,6 +45,7 @@
     <Compile Include="Business\Customer.cs" />
     <Compile Include="Business\CustomerInsurance.cs" />
     <Compile Include="Business\Insurance.cs" />
+    <Compile Include="Business\User.cs" />
     <Compile Include="Enums\GeneralEnums.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -116,5 +116,10 @@ export class CustomerInsuranceEditComponent implements OnInit {
     }
   }
 
+  onClose(){
+    this.router.navigate(['/customerlist']);
+  }
+
+
 
 }
